@@ -13,7 +13,7 @@ const Orders = () => {
 
     useEffect(() => {
         const getOrders = async () => {
-            const email = user.email;
+            const email = user?.email;
             const url = `https://fierce-fortress-36985.herokuapp.com/orders?email=${email}`;
             try {
                 const { data } = await axios.get(url, {
@@ -40,7 +40,7 @@ const Orders = () => {
             <h2 className='text-center mb-4'>Total Orders : {orders.length}</h2>
             {
                 orders.map(order => <div key={order._id}>
-                    <h4 className='text-center'>Ordered by :  {user.email} <br /> Ordered Service : {order.serviceName}</h4>
+                    <h4 className='text-center'>Ordered by :  {user?.email} <br /> Ordered Service : {order.serviceName}</h4>
                 </div>)
             }
         </div>

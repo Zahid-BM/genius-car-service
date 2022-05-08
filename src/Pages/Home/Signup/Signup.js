@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useToken from '../../../hooks/useToken';
 
 
 
@@ -24,6 +25,11 @@ const Signup = () => {
         error
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, profileError] = useUpdateProfile(auth);
+    const [token] = useToken(user);
+
+    if (token) {
+        navigate('/');
+    };
 
     const handleCheckBox = event => {
         const agree = event.target.checked;
@@ -43,10 +49,7 @@ const Signup = () => {
         console.log(updateProfile());
     };
 
-    if (user) {
-        console.log(user);
-        navigate('/');
-    }
+
     return (
         <div className=' container w-25 mx-auto p-4 shadow my-5 rounded'>
             <h2 className='text-center text-primary'>Signup</h2>
