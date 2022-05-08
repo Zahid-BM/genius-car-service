@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 
@@ -26,21 +27,19 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     const [sendPasswordResetEmail, sending, resetPassError] = useSendPasswordResetEmail(auth); /* clean code */
+    const [token] = useToken(user);
+    console.log(token)
 
+    if (token) {
+        navigate(from, { replace: true });
+    };
 
-
-    if (user) {
-
-    }
     const handleFormSubmit = async event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         await signInWithEmailAndPassword(email, password);
-        const { data /* destructured */ } = await axios.post('https://fierce-fortress-36985.herokuapp.com/login', { email /* in axios we must send data in object format */ });
-        console.log(data);
-        localStorage.setItem('accessToken', data.accessToken);
-        navigate(from, { replace: true });
+       
         if (user) {
             toast('login success');
         }
