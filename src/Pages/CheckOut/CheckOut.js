@@ -32,15 +32,15 @@ const CheckOut = () => {
     const handleFormSubmit_for_order_creation = event => {
         event.preventDefault();
         const order = {
-            email: user.email,
+            email: user?.email,
             serviceId: serviceId,
-            serviceName: service.name,
+            serviceName: service?.name,
             address: event.target.address.value,
             phone: event.target.phone.value,
 
         };
 
-        axios.post('https://fierce-fortress-36985.herokuapp.com/order', order)
+        axios.post('https://genius-car-services.onrender.com/order', order)
             .then(response => {
                 const { data } = response;
                 if (data.insertedId) {

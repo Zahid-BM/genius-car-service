@@ -14,7 +14,7 @@ const Orders = () => {
     useEffect(() => {
         const getOrders = async () => {
             const email = user?.email;
-            const url = `https://fierce-fortress-36985.herokuapp.com/orders?email=${email}`;
+            const url = `https://genius-car-services.onrender.com/orders?email=${email}`;
             try {
                 const { data } = await axios.get(url, {
                     headers: {
@@ -22,7 +22,7 @@ const Orders = () => {
                     }
                 });
                 setOrders(data)
-                
+
             }
             catch (error) {
                 console.log(error.message)

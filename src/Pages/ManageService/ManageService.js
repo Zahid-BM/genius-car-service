@@ -7,7 +7,7 @@ const ManageService = () => {
     const handleDelete = id => {
         const userConfirmation = window.confirm('Are you sure to delete this service ?')
         if (userConfirmation) {
-            const url = `https://fierce-fortress-36985.herokuapp.com/service/${id}`;
+            const url = `https://genius-car-services.onrender.com/service/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

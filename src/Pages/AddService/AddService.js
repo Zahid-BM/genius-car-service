@@ -7,7 +7,7 @@ const AddService = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data)
-        const url = 'https://fierce-fortress-36985.herokuapp.com/service';
+        const url = 'https://genius-car-services.onrender.com/service';
         fetch(url, {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
@@ -17,7 +17,7 @@ const AddService = () => {
             .then(result => {
                 console.log(result);
             })
-       
+
         reset();
     };
     return (
